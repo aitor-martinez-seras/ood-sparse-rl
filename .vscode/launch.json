@@ -1,0 +1,823 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "justMyCode": true
+        },
+        {
+            "name": "Image of lava",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.evaluate",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save", "--num_episodes", "5", "--env-list", "lava", "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1"]
+        },
+        {
+            "name": "Image of ball",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.evaluate",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save", "--num_episodes", "5", "--env-list", "ball", "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1"]
+        },
+        {
+            "name": "Image of sand",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.evaluate",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save", "--num_episodes", "5", "--env-list", "sand", "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1"]
+        },
+        {
+            "name": "Image of intro",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.evaluate",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save", "--num_episodes", "5", "--env-list", 
+            //"intro_door",
+            //"intro_lava",
+            "intro_wall",
+            "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1"]
+        },
+        {
+            "name": "Python: evaluate in custom envs",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.evaluate",
+            //"program": "",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1", "--seed", "0", 
+            "--env-list", 
+            //"intro_door",
+            //"intro_lava",
+            "intro_wall",            
+             "--num_episodes", "1000", "--use-gpu", "1", "--gpu-id", "0", 
+             "--visualize"
+            ]
+        },
+        {
+            "name": "Python: evaluate in Random Agent",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.evaluate",
+            //"program": "",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                //"--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1", 
+                "--model", "MN5S8_1000_lvls_r_ep_im0005_ent00005_1", 
+                "--seed", "1", 
+                //"--env", "MiniGrid-MultiRoom-N5-S20-v0",
+                //"--env", "MiniGrid-MultiRoom-N5-S8-v0",
+                //"--env", "MiniGrid-MultiRoomBall100-N5-S8-v0",
+                //"--env", "MiniGrid-MultiRoomQuicksand050-N5-S8-v0",
+                "--env", "MiniGrid-MultiRoomLava010-N5-S8-v0",
+                "--num_episodes", "1000", "--use-gpu", "1", "--gpu-id", "0",
+                "--random_agent"
+                //"--visualize"
+            ]
+        },
+        {
+            "name": "Train MN7S8 16 procs",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "16", "--model", "MN7S8_TEST", "--frames", "1600000", "--env", "MiniGrid-MultiRoom-N7-S8-v0",
+                     "--intrinsic-motivation", "0.05", "--im-type", "ride", "--entropy-coef", "0.0005", "--normalize-intrinsic-bonus", "0",
+                      "--separated-networks", "0", "--use-gpu", "1", "--gpu-id", "3"]
+        },
+        {
+            "name": "Train Lava005 4 procs",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "4", "--model", "TEST_Lava005_750lvls_r_ep_im005_ent0005", "--env", "MiniGrid-MultiRoomLava005-N7-S8-v0", "--intrinsic-motivation", "0.05",
+                     "--entropy-coef", "0.005", "--frames", "5000000", "--im-type", "ride", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0", 
+                     "--init_train_seed", "0", "--num_train_seeds", "750", "--use-gpu", "1", "--gpu-id", "2"]
+        },
+        {
+            "name": "Placeholder for checks",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save_im_module", "1", "--load_im_module", "1", "--nsteps", "2048", "--procs", "1", "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1", 
+            "--seed", "1", "--new_dir_name", "TEST", "--env", "MiniGrid-MultiRoom-N5-S8-v0",
+             "--env_ood", "MiniGrid-MultiRoomLava005-N5-S8-v0", "--intrinsic-motivation", "0.005",
+              "--entropy-coef", "0.00005", "--ood_sampling_ratio", "1.0", "--frames", "10000000", "--im-type", "ride",
+               "--use-episodic-counts", "1", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0", "--init_train_seed", "0",
+                "--num_train_seeds", "1000", "--init_test_seed", "1000", "--num_test_seeds", "2", "--init_train_seed_ood", "0", "--num_train_seeds_ood", "1000", 
+                "--init_test_seed_ood", "1000", "--num_test_seeds_ood", "2", "--evaluation_interval", "250000", "--use-gpu", "1", "--gpu-id", "0"
+
+        ]
+        },
+        {
+            "name": "VISUALIZE Lavas 1 procs",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "TEST_LAVAS_750lvls_r_ep_im005_ent0005", "--seed", "3","--env", "MiniGrid-MultiRoomLava005-N3-S8-v0", "--intrinsic-motivation", "0.05",
+                     "--entropy-coef", "0.005", "--frames", "5000000", "--im-type", "ride", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0", 
+                     "--init_train_seed", "0", "--num_train_seeds", "750", "--use-gpu", "1", "--gpu-id", "3", "--visualize_levels", "1"]
+        },
+        {
+            "name": "VISUALIZE Balls 1 procs",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "TEST_BALLS_750lvls_r_ep_im005_ent0005", "--env", "MiniGrid-MultiRoomBall100-N7-S8-v0", "--intrinsic-motivation", "0.05",
+                     "--entropy-coef", "0.005", "--frames", "5000000", "--im-type", "ride", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0", 
+                     "--init_train_seed", "0", "--num_train_seeds", "750", "--use-gpu", "1", "--gpu-id", "3", "--visualize_levels", "1"]
+        },
+        {
+            "name": "VISUALIZE Boxes 1 procs",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "TEST_BOXES_750lvls_r_ep_im005_ent0005", "--env", "MiniGrid-MultiRoomBox100-N7-S8-v0", "--intrinsic-motivation", "0.05",
+                     "--entropy-coef", "0.005", "--frames", "5000000", "--im-type", "ride", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0", 
+                     "--init_train_seed", "0", "--num_train_seeds", "750", "--use-gpu", "1", "--gpu-id", "3", "--visualize_levels", "1"]
+        },
+        {
+            "name": "Train MN7S8 4 procs and only 750lvls",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "4",  "--model", "TEST_MN7S8_r_ep_im005_ent00005_im_mod_saved_750lvls", "--use-episodic-counts", "1", 
+            "--seed", "1", "--save-interval", "10", "--frames", "3500000", "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--intrinsic-motivation",
+             "0.05", "--im-type", "ride", "--entropy-coef", "0.0005", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0", 
+             "--use-gpu", "1", "--gpu-id", "1", "--save_im_module", "1", "--init_train_seed", "0", "--num_train_seeds", "750"]
+        },
+        {
+            "name": "VISUALIZE train.py: Pretrained in MN7S8, train on LAVA + MN7S8 1 proc",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "MN7S8_r_ep_im005_ent00005_1", "--frames", "1600000", "--env", "MiniGrid-MultiRoom-N7-S8-v0",
+                     "--intrinsic-motivation", "0.05", "--env_ood", "MiniGrid-MultiRoomLava005-N7-S8-v0",
+                     "--im-type", "ride", "--entropy-coef", "0.0005", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0",
+                     "--use-gpu", "1", "--gpu-id", "3", 
+                     "--init_train_seed", "5", "--num_train_seeds", "4", "--init_test_seed", "10", "--num_test_seeds", "5",
+                     "--init_train_seed_ood", "50", "--num_train_seeds_ood", "4", "--new_dir_name", "TEST_MULTIROOM_AND_LAVA",
+                     "--init_test_seed_ood", "100", "--num_test_seeds_ood", "4", "--ood_sampling_ratio", "0.25",
+                     "--visualize_levels", "1"
+                    ]
+        },
+        {
+            "name": "VISUALIZE train.py: Pretrained in MN7S8, train LAVA (sampling ratio=1), No IM Module",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "MN7S8_r_ep_im005_ent00005_1", "--frames", "2000000", "--new_dir_name", "TEST_LAVA_SAMPLING_RATIO_1_NO_IM_MODULE", 
+                    "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--env_ood", "MiniGrid-MultiRoomLava005-N7-S8-v0",
+                    "--im-type", "ride", "--intrinsic-motivation", "0", "--entropy-coef", "0", "--separated-networks", "0",
+                    "--init_train_seed", "0", "--num_train_seeds", "750", "--init_test_seed", "1000", "--num_test_seeds", "5", "--init_train_seed_ood", "0",
+                    "--num_train_seeds_ood", "250", "--init_test_seed_ood", "1000", "--num_test_seeds_ood", "5", "--ood_sampling_ratio", "1", 
+                    "--use-gpu", "1", "--gpu-id", "3", "--visualize_levels", "1"]
+        },
+        {
+            "name": "VISUALIZE train.py: Pretrained in MN7S8, train B100L005 (sampling ratio=1), No IM Module",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "MN7S8_r_ep_im005_ent00005_1", "--frames", "2000000", "--new_dir_name", "TEST_LAVA_SAMPLING_RATIO_1_NO_IM_MODULE", 
+                    "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--env_ood", "MiniGrid-MultiRoomB100L005-N5-S8-v0",
+                    "--im-type", "ride", "--intrinsic-motivation", "0", "--entropy-coef", "0", "--separated-networks", "0",
+                    "--init_train_seed", "0", "--num_train_seeds", "25", "--init_test_seed", "1000", "--num_test_seeds", "5", "--init_train_seed_ood", "0",
+                    "--num_train_seeds_ood", "25", "--init_test_seed_ood", "1000", "--num_test_seeds_ood", "5", "--ood_sampling_ratio", "1", 
+                    "--use-gpu", "1", "--gpu-id", "3", "--visualize_levels", "1"]
+        },
+        {
+            "name": "TEST train.py: OOD_Method Energy, ood detection performance",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1", "--frames", "2000000", "--new_dir_name", "TEST", 
+                    "--env", "MiniGrid-MultiRoom-N5-S8-v0", "--env_ood", "MiniGrid-MultiRoomQuicksand030-N5-S8-v0",
+                    "--im-type", "ride", "--intrinsic-motivation", "0", "--entropy-coef", "0", "--separated-networks", "0",
+                    "--init_train_seed", "0", "--num_train_seeds", "1000", "--init_test_seed", "1000", "--num_test_seeds", "5", 
+                    "--init_train_seed_ood", "0", "--num_train_seeds_ood", "10", "--init_test_seed_ood", "1000", "--num_test_seeds_ood", "5",
+                     "--ood_sampling_ratio", "0.5", "--ood_method", "energy", 
+                    "--load_im_module", "1", "--use-gpu", "0", "--gpu-id", "0", "--visualize_levels", "0",
+                    "--evaluate_ood_detection_performance", "1",
+                    "--save_in_distribution_info", "0", "--load_in_distribution_info", "1", "--ood_detection_range", "2"
+                    ]
+        },
+        {
+            "name": "TEST train.py: OOD_Method MSP, ood detection performance",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1", "--seed", "1", "--frames", "2000000", "--new_dir_name", "TEST", 
+                    "--env", "MiniGrid-MultiRoom-N5-S8-v0", "--env_ood", "MiniGrid-MultiRoomQuicksand030-N5-S8-v0",
+                    "--im-type", "ride", "--intrinsic-motivation", "0", "--entropy-coef", "0", "--separated-networks", "0",
+                    "--init_train_seed", "0", "--num_train_seeds", "5", "--init_test_seed", "1000", "--num_test_seeds", "100", 
+                    "--init_train_seed_ood", "0", "--num_train_seeds_ood", "5", "--init_test_seed_ood", "1000", "--num_test_seeds_ood", "100",
+                     "--ood_sampling_ratio", "0.5", "--ood_method", "msp", 
+                    "--load_im_module", "1", "--use-gpu", "0", "--gpu-id", "0", "--visualize_levels", "0",
+                    "--evaluate_ood_detection_performance", "1",
+                    "--save_in_distribution_info", "0", "--load_in_distribution_info", "1", "--ood_detection_range", "2"
+                    ]
+        },
+        {
+            "name": "TEST train.py: OOD_Method L1, Pretr-MN5S8, ood detection performance",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1", "--frames", "2000000",
+                    "--new_dir_name", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1_ood_performance_evaluation_normal_vs_quicksand", 
+                    "--env", "MiniGrid-MultiRoom-N5-S8-v0", "--env_ood", "MiniGrid-MultiRoomQuicksand030-N5-S8-v0",
+                    "--im-type", "ride", "--intrinsic-motivation", "0", "--entropy-coef", "0", "--separated-networks", "0",
+                    "--init_train_seed", "0", "--num_train_seeds", "25", "--init_test_seed", "1000", "--num_test_seeds", "5", 
+                    "--init_train_seed_ood", "0", "--num_train_seeds_ood", "25", "--init_test_seed_ood", "1000", "--num_test_seeds_ood", "5",
+                     "--ood_sampling_ratio", "0.5", "--ood_method", "l1", 
+                    "--load_im_module", "0", "--use-gpu", "1", "--gpu-id", "2", "--visualize_levels", "0",
+                    "--evaluate_ood_detection_performance", "1",
+                    "--save_in_distribution_info", "1", "--load_in_distribution_info", "0", "--ood_detection_range", "2"
+                    ]
+        },
+        {
+            "name": "TEST train.py: OOD_Method L1, Pretr-MN5S8, OFFLINE, LAVA(SR=0.5), Load IM Module",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "MN7S8_r_ep_im005_ent00005_im_mod_saved_750lvls", "--frames", "2000000", "--new_dir_name", "TEST_LAVA_SAMPLING_RATIO_1_IM_MODULE_load", 
+                    "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--env_ood", "MiniGrid-MultiRoomLava005-N7-S8-v0",
+                    "--im-type", "ride", "--intrinsic-motivation", "0", "--entropy-coef", "0", "--separated-networks", "0",
+                    "--init_train_seed", "0", "--num_train_seeds", "100", "--init_test_seed", "1000", "--num_test_seeds", "5", 
+                    "--init_train_seed_ood", "0", "--num_train_seeds_ood", "100", "--init_test_seed_ood", "1000", "--num_test_seeds_ood", "5",
+                     "--ood_sampling_ratio", "0.5", "--ood_method", "l1", "--save_in_distribution_info", "1",
+                    "--load_im_module", "1", "--adaptation_strategy", "offline", "--intervene_after", "0", "--intervene_every", "1",
+                    "--use-gpu", "1", "--gpu-id", "3", "--visualize_levels", "0"]
+        },
+        {
+            "name": "TEST train.py: Pretrained in MN7S8, ONLINE, train on LAVA + MN7S8 1 proc",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "MN7S8_r_ep_im005_ent00005_1", "--frames", "1600000", "--env", "MiniGrid-MultiRoom-N7-S8-v0",
+                     "--intrinsic-motivation", "0.05", "--env_ood", "MiniGrid-MultiRoomLava005-N7-S8-v0",
+                     "--im-type", "ride", "--entropy-coef", "0.0005", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0",
+                     "--use-gpu", "1", "--gpu-id", "3", 
+                     "--init_train_seed", "5", "--num_train_seeds", "10", "--init_test_seed", "10", "--num_test_seeds", "5",
+                     "--init_train_seed_ood", "50", "--num_train_seeds_ood", "10", "--new_dir_name", "TRAIN_TEST_MULTIROOM_LAVA",
+                     "--init_test_seed_ood", "100", "--num_test_seeds_ood", "4", "--ood_sampling_ratio", "0.25",
+                     "--intervene_after", "25", "--intervene_every", "5", "--adaptation_strategy", "online", "--ood_method", "performance",
+                     "--visualize_levels", "0"
+                    ]
+        },
+        {
+            "name": "TEST train.py: From scrach on LAVA + MN7S8 1 proc",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "TEST_MULTIROOM_AND_LAVA_from_scratch", "--frames", "1600000", "--env", "MiniGrid-MultiRoom-N7-S8-v0",
+                     "--intrinsic-motivation", "0.05", "--env_ood", "MiniGrid-MultiRoomLava005-N7-S8-v0",
+                     "--im-type", "ride", "--entropy-coef", "0.0005", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0",
+                     "--use-gpu", "1", "--gpu-id", "3", 
+                     "--init_train_seed", "0", "--num_train_seeds", "750", "--init_test_seed", "10", "--num_test_seeds", "5",
+                     "--init_train_seed_ood", "750", "--num_train_seeds_ood", "250",
+                     "--init_test_seed_ood", "100", "--num_test_seeds_ood", "4", "--ood_sampling_ratio", "0.25",
+                     "--visualize_levels", "0"
+                    ]
+        },
+        {
+            "name": "TEST train.py: Pretrained in MN7S8, train LAVA (sampling ratio=1), Load IM Module",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "MN7S8_r_ep_im005_ent00005_im_mod_saved_750lvls", "--frames", "2000000", "--new_dir_name", "TEST_LAVA_SAMPLING_RATIO_1_IM_MODULE_load", 
+                    "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--env_ood", "MiniGrid-MultiRoomLava005-N7-S8-v0",
+                    "--im-type", "ride", "--intrinsic-motivation", "0", "--entropy-coef", "0", "--separated-networks", "0",
+                    "--init_train_seed", "0", "--num_train_seeds", "750", "--init_test_seed", "1000", "--num_test_seeds", "5", "--init_train_seed_ood", "0",
+                    "--num_train_seeds_ood", "250", "--init_test_seed_ood", "1000", "--num_test_seeds_ood", "5", "--ood_sampling_ratio", "1", 
+                    "--load_im_module", "1", 
+                    "--use-gpu", "1", "--gpu-id", "3", "--visualize_levels", "0"]
+        },
+        {
+            "name": "TEST train.py: Pretr-MN7S8, OFFLINE, train LAVA (sampling ratio=1), Load IM Module",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "MN7S8_r_ep_im005_ent00005_im_mod_saved_750lvls", "--frames", "2000000", "--new_dir_name", "TEST_LAVA_SAMPLING_RATIO_1_IM_MODULE_load", 
+                    "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--env_ood", "MiniGrid-MultiRoomLava005-N7-S8-v0",
+                    "--im-type", "ride", "--intrinsic-motivation", "0", "--entropy-coef", "0", "--separated-networks", "0",
+                    "--init_train_seed", "0", "--num_train_seeds", "750", "--init_test_seed", "1000", "--num_test_seeds", "5", "--init_train_seed_ood", "0",
+                    "--num_train_seeds_ood", "250", "--init_test_seed_ood", "1000", "--num_test_seeds_ood", "5", "--ood_sampling_ratio", "1", 
+                    "--load_im_module", "1", "--adaptation_strategy", "offline", "--intervene_after", "0", "--intervene_every", "1",
+                    "--use-gpu", "1", "--gpu-id", "2", "--visualize_levels", "0"]
+        },
+        {
+            "name": "TEST train.py: MN5S8 vs LAVA005 (sampling ratio=0.75), Load IM Module, no adaptation strategy",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--load_im_module", "1", "--model", "MN5S8_1000_lvls_r_ep_im005_ent00005_7", "--seed", "7",
+                     "--frames", "10000000", "--new_dir_name", "TEST",
+                     "--im-type", "ride", "--intrinsic-motivation", "0.05", "--entropy-coef", "0.0005", "--separated-networks", "0",
+                     "--init_train_seed", "0", "--num_train_seeds", "1000", "--init_test_seed", "1000", "--num_test_seeds", "100",
+                     "--init_train_seed_ood", "0", "--num_train_seeds_ood", "1000", "--init_test_seed_ood", "1000", "--num_test_seeds_ood", "100",
+                     "--ood_sampling_ratio", "0.75", "--evaluation_interval", "100000",
+                     "--env", "MiniGrid-MultiRoom-N5-S8-v0", "--env_ood", "MiniGrid-MultiRoomLava005-N5-S8-v0", "--use-gpu", "1", "--gpu-id", "1",
+                     "--visualize_levels", "0"]
+        },
+        {
+            "name": "Train MN10S4 with certain number of levels only",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--num_train_seeds", "3", "--procs", "1", "--model", "Launcher_MN10S4_r_ep_im005_ent00005_1", "--use-episodic-counts", "1", "--seed", "1", "--save-interval", "10", "--frames", "1600000", "--env", "MiniGrid-MultiRoom-N10-S4-v0", "--intrinsic-motivation", "0.05", "--im-type", "ride", "--entropy-coef", "0.0005", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0", "--use-gpu", "1", "--gpu-id", "0"]
+        },
+        {
+            "name": "Train MN7S8 with 10 levels only and 16 procs",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--init_train_seed", "15","--num_train_seeds", "10", "--procs", "16", "--model", "Launcher_MN7S8_test", "--use-episodic-counts", "1", "--seed", "1", "--save-interval", "10", "--frames", "1600000", "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--intrinsic-motivation", "0.05", "--im-type", "ride", "--entropy-coef", "0.0005", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0", "--use-gpu", "1", "--gpu-id", "0"]
+        },
+        {
+            "name": "TEST train.py: Pretrained in MN5S8, BALL100 sampling ratio 1",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.train",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--procs", "1", "--model", "MN5S8_1000_lvls_r_ep_im0005_ent00005_1", "--frames", "1600000", "--env", "MiniGrid-MultiRoom-N7-S8-v0",
+                     "--intrinsic-motivation", "0.05", "--env_ood", "MiniGrid-MultiRoomBall100-N7-S8-v0",
+                     "--im-type", "ride", "--entropy-coef", "0.0005", "--normalize-intrinsic-bonus", "0", "--separated-networks", "0",
+                     "--use-gpu", "1", "--gpu-id", "0", 
+                     "--init_train_seed", "0", "--num_train_seeds", "100", "--init_test_seed", "100", "--num_test_seeds", "5",
+                     "--init_train_seed_ood", "0", "--num_train_seeds_ood", "100", "--new_dir_name", "TEST",
+                     "--init_test_seed_ood", "100", "--num_test_seeds_ood", "5", "--ood_sampling_ratio", "1.0",
+                     "--visualize_levels", "1"
+                    ]
+        },
+        {
+            "name": "Python: evaluate",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.evaluate",
+            //"program": "",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1", "--seed", "2", 
+            "--env", "MiniGrid-MultiRoom-N5-S20-v0",
+            //"--env", "MiniGrid-MultiRoomBall100-N5-S8-v0",
+            "--env", "MiniGrid-MultiRoomLava010-N5-S8-v0",
+             "--num_episodes", "1000", "--use-gpu", "1", "--gpu-id", "0", 
+            //"--visualize"
+            ]
+        },
+        {
+            "name": "Python: evaluate in Quicksand",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.evaluate",
+            //"program": "",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": [
+                //"--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1", 
+                "--model", "MN5S8_1000_lvls_r_ep_im0005_ent00005_1", 
+                "--seed", "4", 
+            //"--env", "MiniGrid-MultiRoom-N5-S20-v0",
+            //"--env", "MiniGrid-MultiRoomBall100-N5-S8-v0",
+            //"--env", "MiniGrid-MultiRoomQuicksand075-N5-S8-v0",
+            "--env", "MiniGrid-MultiRoomLavaDoor050-N5-S8-v0",
+             "--num_episodes", "1000", "--use-gpu", "1", "--gpu-id", "0",
+             //"--random_agent"
+            "--visualize"
+            ]
+        },
+        {
+            "name": "Python: ood (just visualize))",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--env", "MiniGrid-MultiRoom-N7-S8-v0", "--model", "MN7S8_r_ep_im005_ent00005_1", "-v"]
+        },
+        {
+            "name": "ood.py explain Saliency explanations",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["-v", "--explainer","saliency", "--num_episodes", "10", "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--model", "MN7S8_r_ep_im005_ent00005_1"]
+        },
+        {
+            "name": "ood.py explain GradCAM explanations",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["-v", "--explainer","gradcam", "--num_episodes", "10", "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--model", "MN7S8_r_ep_im005_ent00005_1"]
+        },
+        {
+            "name": "ood.py IM_Module_L1 N5-S8 save activations and generate thresholds",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save_activations", "--num_episodes", "250", "--env", "MiniGrid-MultiRoom-N5-S8-v0", "--model", "MN5S8_1000_lvls_r_ep_im005_ent00005_7", 
+            "--ood_method", "forward_dynamics_l1", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py IM_Module_L1 N5-S8 Eval in Lava ",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize", "--seed", "25", "--ood_eval", "--num_episodes", "10", "--env", "MiniGrid-MultiRoomLava005-N5-S8-v0", "--load_thresholds",
+                     "--model", "MN5S8_1000_lvls_r_ep_im005_ent00005_7", "--ood_method", "forward_dynamics_l1"]
+        },
+        {
+            "name": "ood.py L1 N5-S8 save activations and generate thresholds",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save_activations", "--num_episodes", "250", "--env", "MiniGrid-MultiRoom-N5-S8-v0", "--model", "MN5S8_1000_lvls_r_ep_im005_ent00005_7", 
+            "--ood_method", "l1", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py L1 N5-S8 Eval in Lava ",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize", "--seed", "7", "--ood_eval", "--num_episodes", "10", "--env", "MiniGrid-MultiRoomLava005-N5-S8-v0", "--load_thresholds",
+                     "--model", "MN5S8_1000_lvls_r_ep_im005_ent00005_7", "--ood_method", "l1"]
+        },
+        {
+            "name": "ood.py L1 N5-S8 Eval in Quicksand",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--seed", "258", "--ood_eval", "--num_episodes", "100", "--env", "MiniGrid-MultiRoomQuicksand025-N5-S8-v0", "--load_thresholds",
+                     "--model", "MN5S8_1000_lvls_r_ep_im005_ent00005_7", "--ood_method", "l1",
+                     "--visualize", 
+                    ]
+        },
+        {
+            "name": "ood.py L1 save activations and generate thresholds",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save_activations", "--num_episodes", "10", "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "l1", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py L1 OOD Eval in Lava",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "5", "--env-list", "MN3S8_test_lava", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "l1", "--load_thresholds",  "--threshold_file", "threshold_and_centroids_l2_MN7S8_r_ep_im005_ent00005_1_MiniGrid-MultiRoom-N7-S8-v0.json"]
+        },
+        {
+            "name": "ood.py L2 (250 epis) save activations and generate thresholds",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save_activations", "--num_episodes", "250", "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "l2", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py L1 OOD Eval in Lava",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "5", "--env", "MiniGrid-MultiRoomLava005-N5-S8-v0", "--model", "MN5S8_1000_lvls_r_ep_im005_ent00005_7",
+            "--ood_method", "l1", "--load_thresholds", "--use-gpu", "1", "--gpu-id", "0", "-v"]
+        },
+        {
+            "name": "ood.py L2 OOD Eval in MultiRoom-Lava",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "5", "--seed", "3", "--env", "MiniGrid-MultiRoomLava010-N5-S8-v0",
+             "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "l2", "--threshold_file", "threshold_and_centroids_l2_MN7S8_r_ep_im005_ent00005_1_MiniGrid-MultiRoom-N7-S8-v0.json"]
+        },
+        {
+            "name": "ood.py L1 OOD Eval in Balls",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "5", "--env", "MiniGrid-MultiRoomBall100-N5-S8-v0", "--model", "MN5S8_1000_lvls_r_ep_im005_ent00005_7",
+             "--ood_method", "l1", "--load_thresholds", "--use-gpu", "1", "--gpu-id", "0"]
+        },
+        {
+            "name": "ood.py L1 OOD Eval in Boxes",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "5", "--env", "MiniGrid-MultiRoomBox100-N5-S8-v0", "--model", "MN5S8_1000_lvls_r_ep_im005_ent00005_7",
+            "--ood_method", "l1", "--load_thresholds", "--use-gpu", "1", "--gpu-id", "0"]
+        },
+        {
+            "name": "ood.py L1 load activations and generate thresholds",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--load_activations", "--num_episodes", "100", "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "l1", "--threshold_generation"]
+        },
+        {
+            "name": "Python: ood (MSP))",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--num_episodes", "50", "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "msp", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py (MSP) 10 episodes save activations and generate thresholds",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save_activations", "--num_episodes", "10", "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1",
+             "--ood_method", "msp", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py (MSP) load activations",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--load_activations", "--num_episodes", "1000", "--env", "MiniGrid-MultiRoom-N7-S8-v0", "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1", "--ood_method", "msp", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py L1 OOD Eval in Lava",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "5", "--env-list", "MN3S8_test_lava", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "l1", "--threshold_file", "threshold_and_centroids_l1_MN7S8_r_ep_im005_ent00005_1_MiniGrid-MultiRoom-N7-S8-v0.json"]
+        },
+        {
+            "name": "ood.py (MSP) eval in InD data",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "1", "--env", "MiniGrid-MultiRoom-N7-S8-v0", 
+            "--model", "P_MN5S8_1000_lvls_r_ep_im005_ent00005_1", "--ood_method", "msp", "--load_thresholds"]
+        },
+        {
+            "name": "ood.py PCA eval in LAVA",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "10", "--env-list", "MN3S8_test_lava", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "pca"]
+        },
+        {
+            "name": "ood.py (MSP) eval in Lava",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "10", "--env-list", "MN3S8_test_lava", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "msp", "--load_thresholds", "--threshold_file", "thresholds_msp_MN7S8_r_ep_im005_ent00005_1_MiniGrid-MultiRoom-N7-S8-v0.json"]
+        },
+        {
+            "name": "ood.py (MSP) eval in Lava 2",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "10", "--env-list", "MN3S8_test_lava_2", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "msp", "--threshold_file", "thresholds_msp_MN7S8_r_ep_im005_ent00005_1_MiniGrid-MultiRoom-N7-S8-v0.json"]
+        },
+        {
+            "name": "ood.py (MSP) eval in N3S20",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "10", "--env", "MiniGrid-MultiRoom-N3-S20-v0", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "msp", "--threshold_file", "thresholds_msp_MN7S8_r_ep_im005_ent00005_1_MiniGrid-MultiRoom-N7-S8-v0.json"]
+        },
+        {
+            "name": "ood.py (MSP) eval in N10S4",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "10", "--env", "MiniGrid-MultiRoom-N10-S4-v0", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "msp", "--threshold_file", "thresholds_msp_MN7S8_r_ep_im005_ent00005_1_MiniGrid-MultiRoom-N7-S8-v0.json"]
+        },
+        {
+            "name": "ood.py (MSP) eval in ObstructedMaze-2Dlh",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "10", "--env", "MiniGrid-ObstructedMaze-2Dlh-v0", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "msp", "--threshold_file", "thresholds_msp_MN7S8_r_ep_im005_ent00005_1_MiniGrid-MultiRoom-N7-S8-v0.json"]
+        },
+        {
+            "name": "ood.py (MSP) eval in KeyCorridorS3R3",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "10", "--env", "MiniGrid-KeyCorridorS3R3-v0", "--model", "MN7S8_r_ep_im005_ent00005_1", "--ood_method", "msp", "--threshold_file", "thresholds_msp_MN7S8_r_ep_im005_ent00005_1_MiniGrid-MultiRoom-N7-S8-v0.json"]
+        },
+        {
+            "name": "ood.py LAVA005 N5-S8 L1 save activations and generate thresholds",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save_activations", "--num_episodes", "1000", "--env", "MiniGrid-MultiRoomLava005-N5-S8-v0", "--model", "MN5S8_lava005_1000_lvls_r_ep_im0005_ent000005_7", "--ood_method", "l1", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py LAVA005 N5-S8 L1 Eval in Lava+Balls",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--num_episodes", "10", "--env", "MiniGrid-MultiRoomB100L005-N5-S8-v0", "--load_thresholds",
+                     "--model", "MN5S8_lava005_1000_lvls_r_ep_im0005_ent000005_7", "--ood_method", "l1"]
+        },
+        {
+            "name": "ood.py BALL100 N5-S8 L1 save activations and generate thresholds",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save_activations", "--num_episodes", "5", "--env", "MiniGrid-MultiRoomBall100-N5-S8-v0", "--model",
+                    "MN5S8_ball100_1000_lvls_r_ep_im005_ent00005_5","--ood_method", "l1", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py BALL100 N5-S8 L1 Eval in Lava+Balls",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize", "--seed", "12", "--ood_eval", "--num_episodes", "10", "--env", "MiniGrid-MultiRoomB100L005-N5-S8-v0", "--load_thresholds",
+                     "--model", "MN5S8_ball100_1000_lvls_r_ep_im005_ent00005_5", "--ood_method", "l1"]
+        },
+        {
+            "name": "ood.py BALL100 N5-S8 L1_per_class save activations and generate thresholds",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save_activations", "--num_episodes", "1000", "--env", "MiniGrid-MultiRoomBall100-N5-S8-v0", "--model",
+                    "MN5S8_ball100_1000_lvls_r_ep_im005_ent00005_5","--ood_method", "l1_per_action", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py BALL100 N5-S8 L1_per_class generate thresholds from activations",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--load_activations", "--num_episodes", "1000", "--env", "MiniGrid-MultiRoomBall100-N5-S8-v0", "--model",
+                    "MN5S8_ball100_1000_lvls_r_ep_im005_ent00005_5","--ood_method", "l1_per_action", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py BALL100 N5-S8 L1_per_class Eval in Lava+Balls",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize", "--seed", "25", "--ood_eval", "--num_episodes", "10", "--env", "MiniGrid-MultiRoomB100L005-N5-S8-v0", "--load_thresholds",
+                     "--model", "MN5S8_ball100_1000_lvls_r_ep_im005_ent00005_5", "--ood_method", "l1_per_action"]
+        },
+        {
+            "name": "ood.py BALL100 N5-S8 L1_per_class Eval in Balls (In-Distribution)",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize", "--seed", "25", "--ood_eval", "--num_episodes", "10", "--env", "MiniGrid-MultiRoomBall100-N5-S8-v0", "--load_thresholds",
+                     "--model", "MN5S8_ball100_1000_lvls_r_ep_im005_ent00005_5", "--ood_method", "l1_per_action"]
+        },
+        {
+            "name": "ood.py LAVA005 N5-S8 L1_per_class save activations and generate thresholds",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--save_activations", "--seed", "7", "--num_episodes", "1000", "--env", "MiniGrid-MultiRoomLava005-N5-S8-v0",
+                     "--model", "MN5S8_lava005_1000_lvls_r_ep_im0005_ent000005_7", "--ood_method", "l1_per_action", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py LAVA005 N5-S8 L1_per_class generate thresholds from activations",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--load_activations", "--seed", "7", "--num_episodes", "1000", "--env", "MiniGrid-MultiRoomLava005-N5-S8-v0", "--model",
+                    "MN5S8_lava005_1000_lvls_r_ep_im0005_ent000005_7","--ood_method", "l1_per_action", "--threshold_generation"]
+        },
+        {
+            "name": "ood.py LAVA005 N5-S8 L1_per_class Eval in Lava+Balls",
+            "type": "python",
+            "request": "launch",
+            "module": "scripts.ood",
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "args": ["--visualize","--ood_eval", "--seed", "17", "--num_episodes", "10", "--env", "MiniGrid-MultiRoomB100L005-N5-S8-v0", "--load_thresholds",
+                     "--model", "MN5S8_lava005_1000_lvls_r_ep_im0005_ent000005_7", "--ood_method", "l1_per_action"]
+        },
+    ]
+}
