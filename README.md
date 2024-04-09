@@ -1,4 +1,4 @@
-# Out Of Distribution techniques for a better adaptation and generalization in Reinforcement Learning
+# Advancing Towards Safe Reinforcement Learning over Sparse Environments with Out-Of-Distribution Observations: Detection and Adaptation Strategies
 
 ## Installation
 
